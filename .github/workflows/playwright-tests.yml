@@ -25,7 +25,10 @@ jobs:
           pip install playwright pytest pytest-html
           playwright install --with-deps
 
-      - name: Run Playwright tests
+      - name: Run Playwright tests (headless)
+        # Set HEADLESS environment variable to ensure browsers run headless in CI
+        env:
+          HEADLESS: "True"
         run: |
           pytest -s tests/ --html=reports/report.html --self-contained-html
 
