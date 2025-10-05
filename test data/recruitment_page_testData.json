@@ -1,0 +1,15 @@
+{
+
+    "firstName": "John",
+    "middleName": "A.", 
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "contactNumber": "+8801321234567",
+    "vacancy": "Senior QA Lead",
+    "resume": "path/to/resume.pdf",
+    "keywords": "Python, Automation",
+    "dateOfApplication": "2024-01-15",
+    "notes": "Experienced QA Engineer",
+    "consentToKeepData": true
+
+}
