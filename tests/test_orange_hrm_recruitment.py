@@ -77,8 +77,8 @@ def test_orange_hrm_login():
             timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
             page.screenshot(path=os.path.join(Screenshot_Dir, f"11_after_clicking_save_{timestamp}.png"))
 
-            print("✅ Test completed. Browser will remain open.")
-            input("Press Enter to close browser...")  # waits for manual input
+            #print("✅ Test completed. Browser will remain open.")
+            #input("Press Enter to close browser...")  # waits for manual input
 
             browser.close()
 
