@@ -38,7 +38,8 @@ def test_orange_hrm_logout():
         page.screenshot(path = os.path.join(Screenshot_Dir, f"03_after_click_login_during_logout_{timestamp}.png"))
 
         # Verify successful login by checking for the presence of the dashboard
-        expect(page.locator("h6:has-text('Dashboard')")).to_be_visible(timeout=3000)
+        dashboard_page = DashboardPage(page)
+        assert dashboard_page.verifyDashboardPageDisplayed(), "Dashboard page is not displayed after login."
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         page.screenshot(path = os.path.join(Screenshot_Dir, f"04_dashboard_page_during_logout_{timestamp}.png"))
 

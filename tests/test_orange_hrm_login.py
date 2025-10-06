@@ -3,6 +3,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 import re
 from playwright.sync_api import sync_playwright, expect
 from pom.login_page import LoginPage
+from pom.dashboard_page import DashboardPage
 
 Screendshot_Dir = os.path.join(os.path.dirname(__file__), "..", "screenshots")
 os.makedirs(Screendshot_Dir, exist_ok=True)
@@ -33,13 +34,17 @@ def test_orange_hrm_login():
             page.screenshot(path=os.path.join(Screendshot_Dir, f"02_login_page_validated_{timestamp}.png"))
 
             login_page.enterValidCredentials()
+            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
             page.screenshot(path=os.path.join(Screendshot_Dir, f"03_login_page_credentials_entered_{timestamp}.png"))
 
             login_page.clickLoginButton()
+            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
             page.screenshot(path=os.path.join(Screendshot_Dir, f"04_after_click_login_{timestamp}.png"))
 
 
-            expect(page.locator("h6:has-text('Dashboard')")).to_be_visible(timeout=3000)
+            dashboard_page = DashboardPage(page)
+            assert dashboard_page.verifyDashboardPageDisplayed(), "Dashboard page is not displayed after login."
+            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
             page.screenshot(path=os.path.join(Screendshot_Dir, f"05_dashboard_page_{timestamp}.png"))
 
             context.close()
